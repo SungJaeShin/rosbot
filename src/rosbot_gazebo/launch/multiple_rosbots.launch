@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <param name="robot_description" command="$(find xacro)/xacro.py $(find rosbot_description)/urdf/rosbot.xacro"/>
+
+    <!-- BEGIN ROSBOT1-->
+    <group ns="rosbot1">
+      <param name="tf_prefix" value="rosbot1_tf" />
+      <include file="$(find rosbot_gazebo)/launch/single_rosbot.launch" >
+        <arg name="init_pose" value="-x 1 -y 1 -z 0" />
+        <arg name="robot_name" value="rosbot1" />
+      </include>
+    </group>
+
+
+    <!-- BEGIN ROSBOT2-->
+    <group ns="rosbot2">
+      <param name="tf_prefix" value="rosbot2_tf" />
+      <include file="$(find rosbot_gazebo)/launch/single_rosbot.launch" >
+        <arg name="init_pose" value="-x 0 -y 1 -z 0" />
+        <arg name="robot_name" value="rosbot2" />
+      </include>
+    </group>
+
+
+    <!-- BEGIN ROSBOT1-->
+    <group ns="rosbot3">
+      <param name="tf_prefix" value="rosbot3_tf" />
+      <include file="$(find rosbot_gazebo)/launch/single_rosbot.launch" >
+        <arg name="init_pose" value="-x -1 -y 1 -z 0" />
+        <arg name="robot_name"  value="rosbot3" />
+      </include>
+    </group>
+
+
+</launch>
