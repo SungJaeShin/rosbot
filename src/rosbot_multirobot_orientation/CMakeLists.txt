@@ -67,6 +67,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
   add_message_files(
     FILES
     SyncedClouds.msg
+    GroundTruth.msg
   )
 
 ## Generate services in the 'srv' folder
@@ -160,6 +161,10 @@ add_dependencies(sync_laserscans rosbot_multirobot_orientation_generate_messages
 add_executable(get_rel_ori src/get_rel_ori.cpp)
 target_link_libraries(get_rel_ori ${catkin_LIBRARIES})
 add_dependencies(get_rel_ori rosbot_multirobot_orientation_generate_messages_cpp)
+
+add_executable(gt_to_tf src/gt_to_tf.cpp)
+target_link_libraries(gt_to_tf ${catkin_LIBRARIES})
+add_dependencies(gt_to_tf rosbot_multirobot_orientation_generate_messages_cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
