@@ -120,6 +120,7 @@ void SyncFilter::Laserscan3_callback(const sensor_msgs::LaserScan::ConstPtr& sub
 			std_msgs::Header tmp;
 			tmp.stamp = ros::Time::now();
 			buf_pc.emplace_back(tmp);
+
 		}
 
 		if(buf_pc.size() > 1 && buf_odom.size() > 1){
@@ -186,6 +187,7 @@ void SyncFilter::Groundtruth3_callback(const nav_msgs::Odometry::ConstPtr& sub_m
 		std_msgs::Header tmp;
 		tmp.stamp = ros::Time::now();
 		buf_odom.emplace_back(tmp);
+		
 	}
 
 }
