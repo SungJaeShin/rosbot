@@ -67,7 +67,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
   add_message_files(
     FILES
     SyncedClouds.msg
-    GroundTruth.msg
+
   )
 
 ## Generate services in the 'srv' folder
@@ -87,7 +87,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 ## Generate added messages and services with any dependencies listed here
   generate_messages(
     DEPENDENCIES
-    geometry_msgs
+    nav_msgs
     sensor_msgs
     std_msgs
   )
