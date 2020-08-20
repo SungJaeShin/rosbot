@@ -148,20 +148,6 @@ void SyncFilter::Groundtruth3_callback(const nav_msgs::Odometry::ConstPtr& sub_m
 	pub_msg.pose3 = *sub_msg;
 	mtx.unlock();
 
-<<<<<<< HEAD
-	bool is_gt1_updated = pub_msg.pose1.header.stamp != old_pub_msg.pose1.header.stamp;
-	bool is_gt2_updated = pub_msg.pose2.header.stamp != old_pub_msg.pose2.header.stamp;
-
-  if(is_gt1_updated && is_gt2_updated){
-  	
-		std_msgs::Header tmp;
-		tmp.stamp = ros::Time::now();
-		buf_odom.emplace_back(tmp);
-		
-	}
-
-=======
->>>>>>> ef86f68068a12a9f8a2ed8b2830c5acef52a38c1
 }
 
 int main(int argc, char** argv)
