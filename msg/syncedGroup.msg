@@ -1,1 +1,0 @@
-rgtSLAM/synced[] group
