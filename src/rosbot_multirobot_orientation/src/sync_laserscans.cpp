@@ -45,8 +45,6 @@ class SyncFilter {
 		sensor_msgs::PointCloud2 pub_msg_1cloud;
 		sensor_msgs::PointCloud2 pub_msg_2cloud;
 		sensor_msgs::PointCloud2 pub_msg_3cloud;
-		std::vector<std_msgs::Header> buf_pc;
-		std::vector<std_msgs::Header> buf_odom;
 
 };
 
@@ -115,71 +113,42 @@ void SyncFilter::Laserscan3_callback(const sensor_msgs::LaserScan::ConstPtr& sub
 
     bool is_pc1_updated = pub_msg.pc1.header.stamp != old_pub_msg.pc1.header.stamp;
     bool is_pc2_updated = pub_msg.pc2.header.stamp != old_pub_msg.pc2.header.stamp;
+		bool is_odom1_updated = pub_msg.pose1.header.stamp != old_pub_msg.pose1.header.stamp;
+		bool is_odom2_updated = pub_msg.pose2.header.stamp != old_pub_msg.pose2.header.stamp;
+		bool is_odom3_updated = pub_msg.pose3.header.stamp != old_pub_msg.pose3.header.stamp;
 
-		if(is_pc1_updated && is_pc2_updated){
-			std_msgs::Header tmp;
-			tmp.stamp = ros::Time::now();
-			buf_pc.emplace_back(tmp);
-
-		}
-
-		if(buf_pc.size() > 1 && buf_odom.size() > 1){
-			t_pc = buf_pc.front().stamp.toSec();
-			bool is_publish = true;
-			int odom_point = 0;
-
-			while(is_publish){
-				t_odom = buf_odom[odom_point].stamp.toSec();
-				t_odom_next = buf_odom[odom_point + 1].stamp.toSec();
-
-				if(t_odom < t_pc && t_pc < t_odom_next){
-					pub_msg.header.stamp = ros::Time::now();
-					pub.publish(pub_msg);
-					old_pub_msg = pub_msg;
-
-					is_publish = false;
-					buf_pc.clear();
-					buf_odom.clear();
-				}
-
-				odom_point ++;
-			}
-
-		}
-    // if(is_pc1_updated && is_pc2_updated){
-    // 	pub_msg.header.stamp = ros::Time::now();
-    // 	pub.publish(pub_msg);
-    // 	old_pub_msg = pub_msg;
-    // }
+    if(is_pc1_updated && is_pc2_updated && is_odom1_updated && is_odom2_updated && is_odom3_updated){
+    	pub_msg.header.stamp = ros::Time::now();
+    	pub.publish(pub_msg);
+    	old_pub_msg = pub_msg;
+    }
 
 }
 
 void SyncFilter::Groundtruth1_callback(const nav_msgs::Odometry::ConstPtr& sub_msg){
-  nav_msgs::Odometry pose_1 = *sub_msg;
 
 	std::mutex mtx;
 	mtx.lock();
-	pub_msg.pose1 = pose_1;
+	pub_msg.pose1 = *sub_msg;
 	mtx.unlock();
 
 }
 void SyncFilter::Groundtruth2_callback(const nav_msgs::Odometry::ConstPtr& sub_msg){
-  nav_msgs::Odometry pose_2 = *sub_msg;
 
 	std::mutex mtx;
 	mtx.lock();
-	pub_msg.pose2 = pose_2;
+	pub_msg.pose2 = *sub_msg;
 	mtx.unlock();
 
 }
 void SyncFilter::Groundtruth3_callback(const nav_msgs::Odometry::ConstPtr& sub_msg){
-  // nav_msgs::Odometry pose_3 = sub_msg;
 
 	std::mutex mtx;
 	mtx.lock();
 	pub_msg.pose3 = *sub_msg;
 	mtx.unlock();
 
+<<<<<<< HEAD
 	bool is_gt1_updated = pub_msg.pose1.header.stamp != old_pub_msg.pose1.header.stamp;
 	bool is_gt2_updated = pub_msg.pose2.header.stamp != old_pub_msg.pose2.header.stamp;
 
@@ -191,6 +160,8 @@ void SyncFilter::Groundtruth3_callback(const nav_msgs::Odometry::ConstPtr& sub_m
 		
 	}
 
+=======
+>>>>>>> ef86f68068a12a9f8a2ed8b2830c5acef52a38c1
 }
 
 int main(int argc, char** argv)
