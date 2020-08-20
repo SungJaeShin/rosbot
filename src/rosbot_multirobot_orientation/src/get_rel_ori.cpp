@@ -44,13 +44,35 @@ void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::Cons
 	icp12.align(Final);
 
 	// Retrieve Final Transformation
-	Eigen::Matrix4f T12 = icp12.getFinalTransformation();
-	std::cout<< T12 << std::endl;
+	Eigen::Matrix4f pred_T12 = icp12.getFinalTransformation();
+	
+
 
 	// Convert 4x4 matrix to rpy for visualization
-	Eigen::VectorXf xyzrpy = unavlib::cvt::eigen2xyzrpy(T12);
+	Eigen::VectorXf pred_xyzrpy = unavlib::cvt::eigen2xyzrpy(pred_T12);
 
-	std::cout << "Yaw (deg): " << xyzrpy(5)/3.14*180 << std::endl;
+
+
+	nav_msgs::Odometry odom1 = sub_msg -> pose1;
+	nav_msgs::Odometry odom2 = sub_msg -> pose2;
+
+	Eigen::Matrix4f tf1 = unavlib::cvt::geoPose2eigen(odom1.pose.pose);
+	Eigen::Matrix4f tf2 = unavlib::cvt::geoPose2eigen(odom2.pose.pose);
+
+	Eigen::Matrix4f GT_T12 = tf2 * tf1.inverse();
+	Eigen::VectorXf GT_xyzrpy = unavlib::cvt::eigen2xyzrpy(GT_T12);
+
+	std::cout << "Predicted | T 1->2 " << std::endl;
+	std::cout<< pred_T12 << std::endl;
+	std::cout << "GT | T 1->2 " << std::endl;
+	std::cout<< GT_T12 << std::endl;
+	std::cout << " " << std::endl;
+	std::cout << " " << std::endl;
+	std::cout << "Predicted | Yaw 1->2 (deg): " << pred_xyzrpy(5)/3.14*180 << std::endl;
+	std::cout << "GT | Yaw 1->2 (deg): " << GT_xyzrpy(5)/3.14*180 << std::endl;
+	std::cout << "GT | Distance: " << pow(pow(GT_xyzrpy(0), 2) + pow(GT_xyzrpy(1), 2), 0.5) << std::endl;
+	std::cout << "__________________" << std::endl;
+	std::cout << " " << std::endl;
 
 
 

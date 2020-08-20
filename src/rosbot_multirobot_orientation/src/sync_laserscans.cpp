@@ -184,6 +184,7 @@ void SyncFilter::Groundtruth3_callback(const nav_msgs::Odometry::ConstPtr& sub_m
 	bool is_gt2_updated = pub_msg.pose2.header.stamp != old_pub_msg.pose2.header.stamp;
 
   if(is_gt1_updated && is_gt2_updated){
+  	
 		std_msgs::Header tmp;
 		tmp.stamp = ros::Time::now();
 		buf_odom.emplace_back(tmp);
