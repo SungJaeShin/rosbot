@@ -170,6 +170,10 @@ add_executable(ndt_rel_ori src/ndt_rel_ori.cpp)
 target_link_libraries(ndt_rel_ori ${catkin_LIBRARIES})
 add_dependencies(ndt_rel_ori rosbot_multirobot_orientation_generate_messages_cpp)
 
+add_executable(angle_histogram src/angle_histogram.cpp)
+target_link_libraries(angle_histogram ${catkin_LIBRARIES})
+add_dependencies(angle_histogram rosbot_multirobot_orientation_generate_messages_cpp)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use

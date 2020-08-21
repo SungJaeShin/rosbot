@@ -75,6 +75,7 @@ void SyncFilter::Laserscan1_callback(const sensor_msgs::LaserScan::ConstPtr& sub
 	projector_.transformLaserScanToPointCloud("rosbot1_tf/laser", *sub_msg, cloud, tfListener_);
 	mtx.lock();
 	pub_msg.pc1 = cloud;
+	pub_msg.scan1 = *sub_msg;
 	mtx.unlock();
     pub_msg_1cloud = cloud;
     pub1_debug.publish(pub_msg_1cloud);
@@ -90,7 +91,7 @@ void SyncFilter::Laserscan2_callback(const sensor_msgs::LaserScan::ConstPtr& sub
     mtx.lock();
 
     pub_msg.pc2 = cloud;
-
+		pub_msg.scan2 = *sub_msg;
     mtx.unlock();
     pub_msg_2cloud = cloud;
     pub2_debug.publish(pub_msg_2cloud);
@@ -106,7 +107,7 @@ void SyncFilter::Laserscan3_callback(const sensor_msgs::LaserScan::ConstPtr& sub
     mtx.lock();
 
     pub_msg.pc3 = cloud;
-
+		pub_msg.scan3 = *sub_msg;
     mtx.unlock();
     pub_msg_3cloud = cloud;
     pub1_debug.publish(pub_msg_3cloud);
