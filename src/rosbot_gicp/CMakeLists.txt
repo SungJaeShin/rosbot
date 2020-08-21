@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(rosbot_multirobot_orientation)
+project(rosbot_gicp)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,27 +8,73 @@ project(rosbot_multirobot_orientation)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  cv_bridge
   geometry_msgs
-  tf
-  message_generation
   laser_geometry
   nav_msgs
   pcl_conversions
   pcl_ros
-  cv_bridge
   roscpp
   roslaunch
   rospy
   sensor_msgs
   std_msgs
   unavlib
+  rosbot_multirobot_orientation
+)
+
+add_message_files(
+   FILES
+   gicpMsg.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  geometry_msgs
+  sensor_msgs
+  nav_msgs
 )
 
 find_package(PCL 1.7 REQUIRED)
 find_package(Boost 1.54 REQUIRED)
 
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES beginner_tutorials
+#  CATKIN_DEPENDS roscpp rospy std_msgs
+#  DEPENDS system_lib
+)
+
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+  src
+)
+
 find_package(OpenCV)
 include_directories(${OpenCV_INCLUDE_DIRS})
+
+
+set(gicp_source
+    src/src/gicp.cpp
+    src/src/gicp.h
+)
+
+set(gicpmatcher_source
+    src/src/gicpmatcher.cpp
+    src/src/gicpmatcher.h
+)
+
+#set(iu_ndtomp
+#    iu_pc_registrator/src/ndtomp.cpp
+#    iu_pc_registrator/src/ndtomp.h
+#)
+
+add_executable(rosbot_gicp src/rosbot_gicp.cpp ${gicp_source} ${gicpmatcher_source})
+target_link_libraries(rosbot_gicp ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_dependencies(rosbot_gicp rosbot_gicp_generate_messages_cpp)
+add_dependencies(rosbot_gicp ${catkin_EXPORTED_TARGETS})
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -64,11 +110,11 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-  add_message_files(
-    FILES
-    SyncedClouds.msg
-
-  )
+# add_message_files(
+#   FILES
+#   Message1.msg
+#   Message2.msg
+# )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -85,12 +131,10 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 # )
 
 ## Generate added messages and services with any dependencies listed here
-  generate_messages(
-    DEPENDENCIES
-    nav_msgs
-    sensor_msgs
-    std_msgs
-  )
+# generate_messages(
+#   DEPENDENCIES
+#   geometry_msgs#   nav_msgs#   sensor_msgs#   std_msgs
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -123,8 +167,8 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES rosbot_multirobot_orientation
-#  CATKIN_DEPENDS geometry_msgs laser_geometry nav_msgs pcl_conversions pcl_ros roscpp roslaunch rospy sensor_msgs std_msgs unavlib
+#  LIBRARIES rosbot_gicp
+#  CATKIN_DEPENDS cv_bridge geometry_msgs laser_geometry nav_msgs pcl_conversions pcl_ros roscpp roslaunch rospy sensor_msgs std_msgs unavlib
 #  DEPENDS system_lib
 )
 
@@ -135,13 +179,13 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
+# include
   ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/rosbot_multirobot_orientation.cpp
+#   src/${PROJECT_NAME}/rosbot_gicp.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -152,27 +196,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/rosbot_multirobot_orientation_node.cpp)
-
-add_executable(sync_laserscans src/sync_laserscans.cpp)
-target_link_libraries(sync_laserscans ${catkin_LIBRARIES})
-add_dependencies(sync_laserscans rosbot_multirobot_orientation_generate_messages_cpp)
-
-add_executable(rosbot_icp src/rosbot_icp.cpp)
-target_link_libraries(rosbot_icp ${catkin_LIBRARIES})
-add_dependencies(rosbot_icp rosbot_multirobot_orientation_generate_messages_cpp)
-
-add_executable(gt_to_tf src/gt_to_tf.cpp)
-target_link_libraries(gt_to_tf ${catkin_LIBRARIES})
-add_dependencies(gt_to_tf rosbot_multirobot_orientation_generate_messages_cpp)
-
-add_executable(rosbot_ndt src/rosbot_ndt.cpp)
-target_link_libraries(rosbot_ndt ${catkin_LIBRARIES})
-add_dependencies(rosbot_ndt rosbot_multirobot_orientation_generate_messages_cpp)
-
-add_executable(angle_histogram src/angle_histogram.cpp)
-target_link_libraries(angle_histogram ${catkin_LIBRARIES})
-add_dependencies(angle_histogram rosbot_multirobot_orientation_generate_messages_cpp)
+# add_executable(${PROJECT_NAME}_node src/rosbot_gicp_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -236,7 +260,7 @@ add_dependencies(angle_histogram rosbot_multirobot_orientation_generate_messages
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_rosbot_multirobot_orientation.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_rosbot_gicp.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

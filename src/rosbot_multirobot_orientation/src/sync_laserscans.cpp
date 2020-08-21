@@ -8,6 +8,7 @@
 #include <tf/transform_listener.h>
 #include <laser_geometry/laser_geometry.h>
 #include "nav_msgs/Odometry.h"
+#include <unavlib/convt.h>
 
 class SyncFilter {
 	public:
@@ -114,12 +115,32 @@ void SyncFilter::Laserscan3_callback(const sensor_msgs::LaserScan::ConstPtr& sub
 
     bool is_pc1_updated = pub_msg.pc1.header.stamp != old_pub_msg.pc1.header.stamp;
     bool is_pc2_updated = pub_msg.pc2.header.stamp != old_pub_msg.pc2.header.stamp;
-		bool is_odom1_updated = pub_msg.pose1.header.stamp != old_pub_msg.pose1.header.stamp;
-		bool is_odom2_updated = pub_msg.pose2.header.stamp != old_pub_msg.pose2.header.stamp;
-		bool is_odom3_updated = pub_msg.pose3.header.stamp != old_pub_msg.pose3.header.stamp;
+	bool is_odom1_updated = pub_msg.pose1.header.stamp != old_pub_msg.pose1.header.stamp;
+	bool is_odom2_updated = pub_msg.pose2.header.stamp != old_pub_msg.pose2.header.stamp;
+	bool is_odom3_updated = pub_msg.pose3.header.stamp != old_pub_msg.pose3.header.stamp;
 
     if(is_pc1_updated && is_pc2_updated && is_odom1_updated && is_odom2_updated && is_odom3_updated){
     	pub_msg.header.stamp = ros::Time::now();
+    	// Calculate relative pose for each robot
+    	geometry_msgs::Pose pose1 = pub_msg.pose1.pose.pose;
+    	geometry_msgs::Pose pose2 = pub_msg.pose2.pose.pose;
+    	geometry_msgs::Pose pose3 = pub_msg.pose3.pose.pose;
+
+    	Eigen::Matrix4f tf1 = unavlib::cvt::geoPose2eigen(pose1);
+		Eigen::Matrix4f tf2 = unavlib::cvt::geoPose2eigen(pose2);
+		Eigen::Matrix4f tf3 = unavlib::cvt::geoPose2eigen(pose3);
+
+		Eigen::Matrix4f T12 = tf2 * tf1.inverse();
+		Eigen::Matrix4f T23 = tf3 * tf2.inverse();
+		Eigen::Matrix4f T31 = tf1 * tf3.inverse();
+
+
+
+		pub_msg.pose12 = unavlib::cvt::eigen2geoPose(T12);
+		pub_msg.pose23 = unavlib::cvt::eigen2geoPose(T23);
+		pub_msg.pose31 = unavlib::cvt::eigen2geoPose(T31); 
+
+
     	pub.publish(pub_msg);
     	old_pub_msg = pub_msg;
     }

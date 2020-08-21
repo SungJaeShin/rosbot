@@ -51,15 +51,9 @@ void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::Cons
 	// Convert 4x4 matrix to rpy for visualization
 	Eigen::VectorXf pred_xyzrpy = unavlib::cvt::eigen2xyzrpy(pred_T12);
 
+	geometry_msgs::Pose pose12 = sub_msg->pose12;
 
-
-	nav_msgs::Odometry odom1 = sub_msg -> pose1;
-	nav_msgs::Odometry odom2 = sub_msg -> pose2;
-
-	Eigen::Matrix4f tf1 = unavlib::cvt::geoPose2eigen(odom1.pose.pose);
-	Eigen::Matrix4f tf2 = unavlib::cvt::geoPose2eigen(odom2.pose.pose);
-
-	Eigen::Matrix4f GT_T12 = tf2 * tf1.inverse();
+	Eigen::Matrix4f GT_T12 = unavlib::cvt::geoPose2eigen(pose12);
 	Eigen::VectorXf GT_xyzrpy = unavlib::cvt::eigen2xyzrpy(GT_T12);
 
 	std::cout << "Predicted | T 1->2 " << std::endl;
