@@ -11,3 +11,4 @@ nav_msgs/Odometry pose3 # GT pose for rosbot3
 geometry_msgs/Pose pose12
 geometry_msgs/Pose pose23
 geometry_msgs/Pose pose31
+float32 init_angle

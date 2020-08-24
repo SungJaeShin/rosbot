@@ -7,7 +7,7 @@
     <group ns="rosbot1">
       <param name="tf_prefix" value="rosbot1_tf" />
       <include file="$(find rosbot_gazebo)/launch/single_rosbot.launch" >
-        <arg name="init_pose" value="-x 1 -y 1 -z 0" />
+        <arg name="init_pose" value="-x -2.3 -y 0.6 -z 0 -Y 1.308" />
         <arg name="robot_name" value="rosbot1" />
       </include>
     </group>
@@ -17,7 +17,7 @@
     <group ns="rosbot2">
       <param name="tf_prefix" value="rosbot2_tf" />
       <include file="$(find rosbot_gazebo)/launch/single_rosbot.launch" >
-        <arg name="init_pose" value="-x 0 -y 1 -z 0" />
+        <arg name="init_pose" value="-x -2 -y 1 -z 0" />
         <arg name="robot_name" value="rosbot2" />
       </include>
     </group>

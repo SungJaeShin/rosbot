@@ -130,15 +130,15 @@ void SyncFilter::Laserscan3_callback(const sensor_msgs::LaserScan::ConstPtr& sub
 		Eigen::Matrix4f tf2 = unavlib::cvt::geoPose2eigen(pose2);
 		Eigen::Matrix4f tf3 = unavlib::cvt::geoPose2eigen(pose3);
 
-		Eigen::Matrix4f T12 = tf2 * tf1.inverse();
-		Eigen::Matrix4f T23 = tf3 * tf2.inverse();
-		Eigen::Matrix4f T31 = tf1 * tf3.inverse();
+		Eigen::Matrix4f T12 = tf1.inverse() * tf2;
+		Eigen::Matrix4f T23 = tf2.inverse() * tf3;
+		Eigen::Matrix4f T31 = tf3.inverse() * tf1;
 
 
 
 		pub_msg.pose12 = unavlib::cvt::eigen2geoPose(T12);
 		pub_msg.pose23 = unavlib::cvt::eigen2geoPose(T23);
-		pub_msg.pose31 = unavlib::cvt::eigen2geoPose(T31); 
+		pub_msg.pose31 = unavlib::cvt::eigen2geoPose(T31);
 
 
     	pub.publish(pub_msg);

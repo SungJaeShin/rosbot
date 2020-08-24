@@ -67,7 +67,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
   add_message_files(
     FILES
     SyncedClouds.msg
-
+    AngleMatch.msg
   )
 
 ## Generate services in the 'srv' folder
