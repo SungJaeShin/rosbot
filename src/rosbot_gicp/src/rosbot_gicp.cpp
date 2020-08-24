@@ -42,12 +42,15 @@ void callbackMatching(const rosbot_multirobot_orientation::SyncedClouds::ConstPt
   geometry_msgs::Pose pose12 = msg->pose12;
   Eigen::Matrix4f GT_T12 = unavlib::cvt::geoPose2eigen(pose12);
 
-  geometry_msgs::Pose initial_guess = unavlib::cvt::eigen2geoPose(GT_T12);
+  Eigen::Matrix4f initial_guess_eigen = unavlib::cvt::xyzrpy2eigen(pose12.position.x, pose12.position.y, pose12.position.z, 0.0, 0.0, (msg->init_angle)*3.1415/180);
 
 
-  // Conduct GICP
-  Eigen::Matrix4f initGuessSrcToTarget = unavlib::cvt::geoPose2eigen(initial_guess);
-  Eigen::Matrix4f tfOutput = matcher.gicp->calcTransformationMatrix(ptrSrc, ptrTarget, initGuessSrcToTarget);
+
+  // // Conduct GICP
+  // Eigen::Matrix4f initGuessSrcToTarget = unavlib::cvt::geoPose2eigen(initial_guess_pose);
+
+
+  Eigen::Matrix4f tfOutput = matcher.gicp->calcTransformationMatrix(ptrSrc, ptrTarget, initial_guess_eigen);
   bool isConverged = matcher.gicp->getConvergence();
 
   // --------- debug --------------
@@ -78,12 +81,12 @@ void callbackMatching(const rosbot_multirobot_orientation::SyncedClouds::ConstPt
 
   Eigen::VectorXf GT_xyzrpy = unavlib::cvt::eigen2xyzrpy(GT_T12);
 
-  std::cout << "Predicted | T 1->2 " << std::endl;
-  std::cout<< output << std::endl;
-  std::cout << "GT | T 1->2 " << std::endl;
-  std::cout<< GT_T12 << std::endl;
-  std::cout << " " << std::endl;
-  std::cout << " " << std::endl;
+  // std::cout << "Predicted | T 1->2 " << std::endl;
+  // std::cout<< output << std::endl;
+  // std::cout << "GT | T 1->2 " << std::endl;
+  // std::cout<< GT_T12 << std::endl;
+  // std::cout << " " << std::endl;
+  // std::cout << " " << std::endl;
   std::cout << "Predicted | Yaw 1->2 (deg): " << pred_xyzrpy(5)/3.14*180 << std::endl;
   std::cout << "GT | Yaw 1->2 (deg): " << GT_xyzrpy(5)/3.14*180 << std::endl;
   std::cout << "GT | Distance: " << pow(pow(GT_xyzrpy(0), 2) + pow(GT_xyzrpy(1), 2), 0.5) << std::endl;
@@ -105,8 +108,8 @@ int main(int argc, char **argv)
     nodeHandler.param<float>("/ICP/minscore", scoreLimit, 0.25);
     nodeHandler.param<float>("/ICP/voxelsizeQuery", voxelSizeQuery, 0.3);
     nodeHandler.param<float>("/ICP/voxelsizeTarget", voxelSizeTarget, 0.3);
-    nodeHandler.param("/ICP/maxiter", numMaxIter, 1100);
-    nodeHandler.param("/ICP/RANSACIter", numIter, 550);
+    nodeHandler.param("/ICP/maxiter", numMaxIter, 300);
+    nodeHandler.param("/ICP/RANSACIter", numIter, 300);
     nodeHandler.param<float>("/ICP/epsilon", epsilon, 0.012);
 
     matcher.setValue(maxDist, scoreLimit, numMaxIter, numIter, voxelSizeQuery, voxelSizeTarget, epsilon);
@@ -114,7 +117,7 @@ int main(int argc, char **argv)
     matchingOutput = nodeHandler.advertise<geometry_msgs::Pose>("/rosbot12/gicp/output", 100);
 
     static ros::Subscriber subMatchingPair =
-        nodeHandler.subscribe<rosbot_multirobot_orientation::SyncedClouds>("/rosbots/clouds", 1 , &callbackMatching);
+        nodeHandler.subscribe<rosbot_multirobot_orientation::SyncedClouds>("/rosbots/clouds_angleinitialized", 1 , &callbackMatching);
 
     ros::spin();
 

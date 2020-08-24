@@ -36,12 +36,17 @@ void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::Cons
 	pcl::fromROSMsg(pc2,*pcl2);
 	pcl::fromROSMsg(pc3,*pcl3);
 
+	// Get initial orientation from angle histogram
+	geometry_msgs::Pose relpose12 = sub_msg->pose12;
+ 	Eigen::Matrix4f initial_guess_eigen = unavlib::cvt::xyzrpy2eigen(relpose12.position.x, relpose12.position.y, relpose12.position.z, 0.0, 0.0, (sub_msg->init_angle)*3.1415/180);
+
+
 	// Conduct ICP between 1 and 2
 	pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp12;
 	icp12.setInputSource(pcl2);
 	icp12.setInputTarget(pcl1);
 	pcl::PointCloud<pcl::PointXYZ> Final;
-	icp12.align(Final);
+	icp12.align(Final, initial_guess_eigen);
 
 	// Retrieve Final Transformation
 	Eigen::Matrix4f pred_T12 = icp12.getFinalTransformation();
@@ -79,7 +84,7 @@ int main(int argc, char **argv)
 	ros::NodeHandle nh;
 
 	// Subscriber Initializations to all ROSBOT 1-3s
-	ros::Subscriber sub1 = nh.subscribe("/rosbots/clouds", 100, Pointcloud_callback);
+	ros::Subscriber sub1 = nh.subscribe("/rosbots/clouds_angleinitialized", 100, Pointcloud_callback);
 	ros::spin();
 
 	return 0;

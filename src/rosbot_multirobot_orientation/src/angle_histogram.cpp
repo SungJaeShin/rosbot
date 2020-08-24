@@ -190,7 +190,8 @@ void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::Cons
   else{
     angle_rotation = -angle_rotation;
   }
-  std::cout << " --------------------------- " << std::endl;
+  static int debug_cnt = 0;
+  std::cout << debug_cnt++ <<" --------------------------- " << std::endl;
   std::cout << " overall index : " << (int)(360 / angle_interval1) << std::endl;
   // Output
   std::cout << " --------------------------- " << std::endl;
@@ -244,8 +245,8 @@ int main(int argc, char **argv)
 
 	// Subscriber Initializations to all ROSBOT 1-3s
 
-  pub = nh.advertise<rosbot_multirobot_orientation::SyncedClouds>("/rosbots/clouds_angleinitialized", 100, false);
-	ros::Subscriber sub1 = nh.subscribe("/rosbots/clouds", 100, Pointcloud_callback);
+  pub = nh.advertise<rosbot_multirobot_orientation::SyncedClouds>("/rosbots/clouds_angleinitialized", 1, false);
+	ros::Subscriber sub1 = nh.subscribe("/rosbots/clouds", 1, Pointcloud_callback);
 	ros::spin();
 
 	return 0;
