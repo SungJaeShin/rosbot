@@ -18,7 +18,9 @@
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
 
-
+ros::Publisher debug_pub;
+std::ofstream myfile;
+std::string logfile_name;
 
 void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::ConstPtr& sub_msg)
 {
@@ -73,15 +75,24 @@ void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::Cons
 	std::cout << "__________________" << std::endl;
 	std::cout << " " << std::endl;
 
-
-
+	// Now write log to csv file
+	myfile.open(logfile_name, std::ios_base::app);
+	myfile << std::to_string(pred_xyzrpy(5)/3.14*180) + ", " + std::to_string(GT_xyzrpy(5)/3.14*180) + ", "  + std::to_string(pow(pow(GT_xyzrpy(0), 2) + pow(GT_xyzrpy(1), 2), 0.5)) <<std::endl;
+	myfile.close();
 
 }
 
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "get_rel_ori");
+	ros::init(argc, argv, "rosbot_icp");
 	ros::NodeHandle nh;
+
+	logfile_name = "/home/sungwon/catkin_ws/csv_log/rosbot_icp_" + std::to_string(ros::Time::now().toSec()) + ".csv";
+    std::ofstream output(logfile_name);
+    std::cout <<"Created logfile : " << logfile_name << std::endl;
+    myfile.open(logfile_name, std::ios_base::app);
+    myfile << "yaw_GT, yaw_pred";
+    myfile.close();
 
 	// Subscriber Initializations to all ROSBOT 1-3s
 	ros::Subscriber sub1 = nh.subscribe("/rosbots/clouds_angleinitialized", 100, Pointcloud_callback);

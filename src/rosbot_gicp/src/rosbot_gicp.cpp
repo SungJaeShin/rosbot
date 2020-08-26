@@ -12,6 +12,8 @@ using namespace seromo;
 
 GICPMatcher    matcher;
 ros::Publisher matchingOutput;
+std::ofstream myfile;
+std::string logfile_name;
 
 void callbackMatching(const rosbot_multirobot_orientation::SyncedClouds::ConstPtr& msg)
 {
@@ -92,6 +94,10 @@ void callbackMatching(const rosbot_multirobot_orientation::SyncedClouds::ConstPt
   std::cout << "GT | Distance: " << pow(pow(GT_xyzrpy(0), 2) + pow(GT_xyzrpy(1), 2), 0.5) << std::endl;
   std::cout << "__________________" << std::endl;
   std::cout << " " << std::endl;
+  myfile.open(logfile_name, std::ios_base::app);
+  myfile << std::to_string(pred_xyzrpy(5)/3.14*180) + ", " + std::to_string(GT_xyzrpy(5)/3.14*180) + ", "  + std::to_string(pow(pow(GT_xyzrpy(0), 2) + pow(GT_xyzrpy(1), 2), 0.5)) <<std::endl;
+  myfile.close();
+
 
 }
 
@@ -115,6 +121,13 @@ int main(int argc, char **argv)
     matcher.setValue(maxDist, scoreLimit, numMaxIter, numIter, voxelSizeQuery, voxelSizeTarget, epsilon);
 
     matchingOutput = nodeHandler.advertise<geometry_msgs::Pose>("/rosbot12/gicp/output", 100);
+
+    logfile_name = "/home/sungwon/catkin_ws/csv_log/rosbot_gicp_" + std::to_string(ros::Time::now().toSec()) + ".csv";
+    std::ofstream output(logfile_name);
+    std::cout <<"Created logfile : " << logfile_name << std::endl;
+    myfile.open(logfile_name, std::ios_base::app);
+    myfile << "yaw_GT, yaw_pred";
+    myfile.close();
 
     static ros::Subscriber subMatchingPair =
         nodeHandler.subscribe<rosbot_multirobot_orientation::SyncedClouds>("/rosbots/clouds_angleinitialized", 1 , &callbackMatching);

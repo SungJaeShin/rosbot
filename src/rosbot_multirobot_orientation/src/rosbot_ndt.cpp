@@ -22,6 +22,8 @@
 #include <pcl/filters/approximate_voxel_grid.h>
 
 ros::Publisher debug_pub;
+std::ofstream myfile;
+std::string logfile_name;
 
 void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::ConstPtr& sub_msg)
 {
@@ -66,6 +68,7 @@ void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::Cons
 
 	geometry_msgs::Pose relpose12 = sub_msg->pose12;
 	Eigen::Matrix4f initial_guess_eigen = unavlib::cvt::xyzrpy2eigen(relpose12.position.x, relpose12.position.y, relpose12.position.z, 0.0, 0.0, (sub_msg->init_angle)*3.1415/180);
+	// Eigen::Matrix4f initial_guess_eigen = unavlib::cvt::xyzrpy2eigen(relpose12.position.x, relpose12.position.y, relpose12.position.z, 0.0, 0.0, 0.0);
 
 
 	ndt12.setInputSource(filtered_cloud);
@@ -102,10 +105,10 @@ void Pointcloud_callback(const rosbot_multirobot_orientation::SyncedClouds::Cons
 	std::cout << "__________________" << std::endl;
 	std::cout << " " << std::endl;
 
-
-	std_msgs::Int32 dummy;
-	dummy.data = 32;
-	debug_pub.publish(dummy);
+	// Now write log to csv file
+	myfile.open(logfile_name, std::ios_base::app);
+	myfile << std::to_string(pred_xyzrpy(5)/3.14*180) + ", " + std::to_string(GT_xyzrpy(5)/3.14*180) + ", "  + std::to_string(pow(pow(GT_xyzrpy(0), 2) + pow(GT_xyzrpy(1), 2), 0.5)) <<std::endl;
+	myfile.close();
 
 }
 
@@ -114,9 +117,16 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "rosbot_ndt");
 	ros::NodeHandle nh;
 
+	// Create log file
+    logfile_name = "/home/sungwon/catkin_ws/csv_log/rosbot_ndt_" + std::to_string(ros::Time::now().toSec()) + ".csv";
+    std::ofstream output(logfile_name);
+    std::cout <<"Created logfile : " << logfile_name << std::endl;
+    myfile.open(logfile_name, std::ios_base::app);
+    myfile << "yaw_GT, yaw_pred";
+    myfile.close();
+
 	// Subscriber Initializations to all ROSBOT 1-3s
 	ros::Subscriber sub1 = nh.subscribe("/rosbots/clouds_angleinitialized", 1, Pointcloud_callback);
-	debug_pub = nh.advertise<std_msgs::Int32>("/rosbots/ndt_debug", 100, false);
 	ros::spin();
 
 	return 0;
