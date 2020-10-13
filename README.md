@@ -4,22 +4,22 @@ URDF model for Gazebo integrated with ROS.
 
 ## How to use. ## 
 
-### Launch the virtual environment with multiple robots ###
+### 1. Launch the virtual environment with multiple robots ###
 
   *$ roslaunch rosbot_gazebo main.lanch*
   
 
-### Synchronize Laserscans ###
+### 2. Synchronize Laserscans ###
 
   *$ rosrun rosbot_multirobot_orientation sync_laserscans*
   
 
-### Conduct yaw initialization with angle histogram matching ###
+### 3. Conduct yaw initialization with angle histogram matching ###
 
   *$ rosrun rosbot_multirobot_orientation angle_histogram*
   
 
-### Conduct pointcloud registration algorithms for sophisticated estimation of relative pose ###
+### 4. Conduct pointcloud registration algorithms for sophisticated estimation of relative pose ###
 
   **NDT**: *$ rosrun rosbot_multirobot_orientation rosbot_ndt*
   
