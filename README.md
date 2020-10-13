@@ -21,8 +21,8 @@ URDF model for Gazebo integrated with ROS.
 
 ### 4. Conduct pointcloud registration algorithms for sophisticated estimation of relative pose ###
 
-  **NDT**: *$ rosrun rosbot_multirobot_orientation rosbot_ndt*
+  * **NDT**: *$ rosrun rosbot_multirobot_orientation rosbot_ndt*
   
-  **ICP**: *$ rosrun rosbot_multirobot_orientation rosbot_icp*
+  * **ICP**: *$ rosrun rosbot_multirobot_orientation rosbot_icp*
   
-  **G-ICP**: *$ rosrun rosbot_gicp rosbot_gicp*
+  * **G-ICP**: *$ rosrun rosbot_gicp rosbot_gicp*
