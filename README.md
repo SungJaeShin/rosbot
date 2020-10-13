@@ -6,4 +6,4 @@ URDF model for Gazebo integrated with ROS.
 
 * Launch the virtual environment with multiple robots
 
-$ roslaunch rosbot_gazebo main.lanch
+$ *roslaunch rosbot_gazebo main.lanch*
