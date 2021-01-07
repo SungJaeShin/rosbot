@@ -1,0 +1,3 @@
+Symlinking /home/jimi/gitlab/rosbot/devel/lib/pkgconfig/rosbot_gazebo.pc
+Symlinking /home/jimi/gitlab/rosbot/devel/share/rosbot_gazebo/cmake/rosbot_gazeboConfig.cmake
+Symlinking /home/jimi/gitlab/rosbot/devel/share/rosbot_gazebo/cmake/rosbot_gazeboConfig-version.cmake

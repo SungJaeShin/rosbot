@@ -10,4 +10,7 @@
   <!-- INCLUDE ROBOTS -->
   <include file="$(find rosbot_gazebo)/launch/multiple_rosbots.launch"/>
 
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rosbot_description)/rviz/rosbot_201129.rviz" required="true" output="screen"/>
+
 </launch>

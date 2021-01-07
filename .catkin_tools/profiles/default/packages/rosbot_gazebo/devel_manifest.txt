@@ -1,0 +1,5 @@
+rosbot_gazebo
+/home/jimi/gitlab/rosbot/devel/.private/rosbot_gazebo/cmake.lock /home/jimi/gitlab/rosbot/devel/./cmake.lock
+/home/jimi/gitlab/rosbot/devel/.private/rosbot_gazebo/lib/pkgconfig/rosbot_gazebo.pc /home/jimi/gitlab/rosbot/devel/lib/pkgconfig/rosbot_gazebo.pc
+/home/jimi/gitlab/rosbot/devel/.private/rosbot_gazebo/share/rosbot_gazebo/cmake/rosbot_gazeboConfig.cmake /home/jimi/gitlab/rosbot/devel/share/rosbot_gazebo/cmake/rosbot_gazeboConfig.cmake
+/home/jimi/gitlab/rosbot/devel/.private/rosbot_gazebo/share/rosbot_gazebo/cmake/rosbot_gazeboConfig-version.cmake /home/jimi/gitlab/rosbot/devel/share/rosbot_gazebo/cmake/rosbot_gazeboConfig-version.cmake

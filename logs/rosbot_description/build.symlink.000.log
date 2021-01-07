@@ -1,0 +1,4 @@
+Symlinking /home/jimi/gitlab/rosbot/devel/lib/python2.7/dist-packages/rosbot_description/__init__.py
+Symlinking /home/jimi/gitlab/rosbot/devel/lib/pkgconfig/rosbot_description.pc
+Symlinking /home/jimi/gitlab/rosbot/devel/share/rosbot_description/cmake/rosbot_descriptionConfig-version.cmake
+Symlinking /home/jimi/gitlab/rosbot/devel/share/rosbot_description/cmake/rosbot_descriptionConfig.cmake

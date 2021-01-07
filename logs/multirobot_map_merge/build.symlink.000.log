@@ -1,0 +1,5 @@
+Symlinking /home/jimi/gitlab/rosbot/devel/lib/libcombine_grids.a
+Symlinking /home/jimi/gitlab/rosbot/devel/lib/pkgconfig/multirobot_map_merge.pc
+Symlinking /home/jimi/gitlab/rosbot/devel/lib/multirobot_map_merge/map_merge
+Symlinking /home/jimi/gitlab/rosbot/devel/share/multirobot_map_merge/cmake/multirobot_map_mergeConfig-version.cmake
+Symlinking /home/jimi/gitlab/rosbot/devel/share/multirobot_map_merge/cmake/multirobot_map_mergeConfig.cmake

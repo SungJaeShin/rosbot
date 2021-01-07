@@ -1,0 +1,5 @@
+rosbot_navigation
+/home/jimi/gitlab/rosbot/devel/.private/rosbot_navigation/cmake.lock /home/jimi/gitlab/rosbot/devel/./cmake.lock
+/home/jimi/gitlab/rosbot/devel/.private/rosbot_navigation/lib/pkgconfig/rosbot_navigation.pc /home/jimi/gitlab/rosbot/devel/lib/pkgconfig/rosbot_navigation.pc
+/home/jimi/gitlab/rosbot/devel/.private/rosbot_navigation/share/rosbot_navigation/cmake/rosbot_navigationConfig-version.cmake /home/jimi/gitlab/rosbot/devel/share/rosbot_navigation/cmake/rosbot_navigationConfig-version.cmake
+/home/jimi/gitlab/rosbot/devel/.private/rosbot_navigation/share/rosbot_navigation/cmake/rosbot_navigationConfig.cmake /home/jimi/gitlab/rosbot/devel/share/rosbot_navigation/cmake/rosbot_navigationConfig.cmake

@@ -1,0 +1,108 @@
+[35m[1mScanning dependencies of target nav_msgs_generate_messages_py[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target nav_msgs_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target sensor_msgs_generate_messages_py[0m
+[35m[1mScanning dependencies of target _rosbot_multirobot_orientation_generate_messages_check_deps_SyncedClouds[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target sensor_msgs_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target nav_msgs_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
+[35m[1mScanning dependencies of target nav_msgs_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target _rosbot_multirobot_orientation_generate_messages_check_deps_AngleMatch[0m
+[35m[1mScanning dependencies of target sensor_msgs_generate_messages_cpp[0m
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target nav_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target nav_msgs_generate_messages_lisp
+[  0%] Built target nav_msgs_generate_messages_nodejs
+[  0%] Built target nav_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[35m[1mScanning dependencies of target sensor_msgs_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target sensor_msgs_generate_messages_eus[0m
+[35m[1mScanning dependencies of target nav_msgs_generate_messages_eus[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_eus[0m
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target nav_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target _rosbot_multirobot_orientation_generate_messages_check_deps_SyncedClouds
+[  0%] Built target _rosbot_multirobot_orientation_generate_messages_check_deps_AngleMatch
+[35m[1mScanning dependencies of target rosbot_multirobot_orientation_generate_messages_py[0m
+[35m[1mScanning dependencies of target rosbot_multirobot_orientation_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target rosbot_multirobot_orientation_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target rosbot_multirobot_orientation_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target rosbot_multirobot_orientation_generate_messages_eus[0m
+[  4%] [34m[1mGenerating Javascript code from rosbot_multirobot_orientation/SyncedClouds.msg[0m
+[  9%] [34m[1mGenerating Python from MSG rosbot_multirobot_orientation/SyncedClouds[0m
+[ 18%] [34m[1mGenerating Javascript code from rosbot_multirobot_orientation/AngleMatch.msg[0m
+[ 18%] [34m[1mGenerating C++ code from rosbot_multirobot_orientation/AngleMatch.msg[0m
+[ 22%] [34m[1mGenerating Lisp code from rosbot_multirobot_orientation/SyncedClouds.msg[0m
+[ 36%] [34m[1mGenerating C++ code from rosbot_multirobot_orientation/SyncedClouds.msg[0m
+[ 36%] [34m[1mGenerating Python from MSG rosbot_multirobot_orientation/AngleMatch[0m
+[ 36%] [34m[1mGenerating Lisp code from rosbot_multirobot_orientation/AngleMatch.msg[0m
+[ 40%] [34m[1mGenerating EusLisp code from rosbot_multirobot_orientation/AngleMatch.msg[0m
+[ 45%] [34m[1mGenerating EusLisp manifest code for rosbot_multirobot_orientation[0m
+[ 50%] [34m[1mGenerating EusLisp code from rosbot_multirobot_orientation/SyncedClouds.msg[0m
+[ 50%] Built target rosbot_multirobot_orientation_generate_messages_lisp
+[ 50%] Built target rosbot_multirobot_orientation_generate_messages_nodejs
+[ 54%] [34m[1mGenerating Python msg __init__.py for rosbot_multirobot_orientation[0m
+[ 54%] Built target rosbot_multirobot_orientation_generate_messages_cpp
+[35m[1mScanning dependencies of target gt_to_tf[0m
+[35m[1mScanning dependencies of target rosbot_icp[0m
+[35m[1mScanning dependencies of target angle_histogram[0m
+[35m[1mScanning dependencies of target rosbot_ndt[0m
+[35m[1mScanning dependencies of target sync_laserscans[0m
+[ 54%] Built target rosbot_multirobot_orientation_generate_messages_py
+[ 59%] [32mBuilding CXX object CMakeFiles/sync_laserscans.dir/src/sync_laserscans.cpp.o[0m
+[ 68%] [32mBuilding CXX object CMakeFiles/angle_histogram.dir/src/angle_histogram.cpp.o[0m
+[ 68%] [32mBuilding CXX object CMakeFiles/rosbot_ndt.dir/src/rosbot_ndt.cpp.o[0m
+[ 72%] [32mBuilding CXX object CMakeFiles/rosbot_icp.dir/src/rosbot_icp.cpp.o[0m
+[ 77%] [32mBuilding CXX object CMakeFiles/gt_to_tf.dir/src/gt_to_tf.cpp.o[0m
+[ 77%] Built target rosbot_multirobot_orientation_generate_messages_eus
+[35m[1mScanning dependencies of target rosbot_multirobot_orientation_generate_messages[0m
+[ 77%] Built target rosbot_multirobot_orientation_generate_messages
+In file included from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/sac_model.h:52:0[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/sac.h:45[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/ransac.h:44[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/registration/icp.h:45[m[K,
+                 from [01m[K/home/jimi/gitlab/rosbot/src/rosbot_multirobot_orientation/src/gt_to_tf.cpp:15[m[K:
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:[m[K In function ‘[01m[Kvoid __static_initialization_and_destruction_0(int, int)[m[K’:
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:99:3:[m[K [01;35m[Kwarning: [m[K‘[01m[Kpcl::SAC_SAMPLE_SIZE[m[K’ is deprecated: This map is deprecated and is kept only to prevent breaking existing user code. Starting from PCL 1.8.0 model sample size is a protected member of the SampleConsensusModel class [[01;35m[K-Wdeprecated-declarations[m[K]
+   [01;35m[KSAC_SAMPLE_SIZE[m[K (sample_size_pairs, sample_size_pairs + sizeof (sample_size_pairs) / sizeof (SampleSizeModel));
+   [01;35m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:99:3:[m[K [01;36m[Knote: [m[Kdeclared here
+In file included from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/sac_model.h:52:0[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/sac.h:45[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/ransac.h:44[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/registration/icp.h:45[m[K,
+                 from [01m[K/home/jimi/gitlab/rosbot/src/rosbot_multirobot_orientation/src/rosbot_icp.cpp:15[m[K:
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:[m[K In function ‘[01m[Kvoid __static_initialization_and_destruction_0(int, int)[m[K’:
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:99:3:[m[K [01;35m[Kwarning: [m[K‘[01m[Kpcl::SAC_SAMPLE_SIZE[m[K’ is deprecated: This map is deprecated and is kept only to prevent breaking existing user code. Starting from PCL 1.8.0 model sample size is a protected member of the SampleConsensusModel class [[01;35m[K-Wdeprecated-declarations[m[K]
+   [01;35m[KSAC_SAMPLE_SIZE[m[K (sample_size_pairs, sample_size_pairs + sizeof (sample_size_pairs) / sizeof (SampleSizeModel));
+   [01;35m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:99:3:[m[K [01;36m[Knote: [m[Kdeclared here
+[ 81%] [32m[1mLinking CXX executable /home/jimi/gitlab/rosbot/devel/.private/rosbot_multirobot_orientation/lib/rosbot_multirobot_orientation/sync_laserscans[0m
+[ 86%] [32m[1mLinking CXX executable /home/jimi/gitlab/rosbot/devel/.private/rosbot_multirobot_orientation/lib/rosbot_multirobot_orientation/angle_histogram[0m
+In file included from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/sac_model.h:52:0[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/sac.h:45[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/sample_consensus/ransac.h:44[m[K,
+                 from [01m[K/usr/include/pcl-1.8/pcl/registration/icp.h:45[m[K,
+                 from [01m[K/home/jimi/gitlab/rosbot/src/rosbot_multirobot_orientation/src/rosbot_ndt.cpp:16[m[K:
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:[m[K In function ‘[01m[Kvoid __static_initialization_and_destruction_0(int, int)[m[K’:
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:99:3:[m[K [01;35m[Kwarning: [m[K‘[01m[Kpcl::SAC_SAMPLE_SIZE[m[K’ is deprecated: This map is deprecated and is kept only to prevent breaking existing user code. Starting from PCL 1.8.0 model sample size is a protected member of the SampleConsensusModel class [[01;35m[K-Wdeprecated-declarations[m[K]
+   [01;35m[KSAC_SAMPLE_SIZE[m[K (sample_size_pairs, sample_size_pairs + sizeof (sample_size_pairs) / sizeof (SampleSizeModel));
+   [01;35m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/usr/include/pcl-1.8/pcl/sample_consensus/model_types.h:99:3:[m[K [01;36m[Knote: [m[Kdeclared here
+[ 90%] [32m[1mLinking CXX executable /home/jimi/gitlab/rosbot/devel/.private/rosbot_multirobot_orientation/lib/rosbot_multirobot_orientation/gt_to_tf[0m
+[ 90%] Built target sync_laserscans
+[ 90%] Built target angle_histogram
+[ 90%] Built target gt_to_tf
+[ 95%] [32m[1mLinking CXX executable /home/jimi/gitlab/rosbot/devel/.private/rosbot_multirobot_orientation/lib/rosbot_multirobot_orientation/rosbot_icp[0m
+[100%] [32m[1mLinking CXX executable /home/jimi/gitlab/rosbot/devel/.private/rosbot_multirobot_orientation/lib/rosbot_multirobot_orientation/rosbot_ndt[0m
+[100%] Built target rosbot_icp
+[100%] Built target rosbot_ndt

@@ -1,0 +1,16 @@
+[31m[1mCMake Error[0m at /opt/ros/melodic/share/catkin/cmake/catkinConfig.cmake:83 (find_package):
+  Could not find a package configuration file provided by
+  "rosbot_multirobot_orientation" with any of the following names:
+
+    rosbot_multirobot_orientationConfig.cmake
+    rosbot_multirobot_orientation-config.cmake
+
+  Add the installation prefix of "rosbot_multirobot_orientation" to
+  CMAKE_PREFIX_PATH or set "rosbot_multirobot_orientation_DIR" to a directory
+  containing one of the above files.  If "rosbot_multirobot_orientation"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+[36mCall Stack (most recent call first):[0m
+  CMakeLists.txt:10 (find_package)
+
+

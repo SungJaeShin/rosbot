@@ -1,0 +1,12 @@
+Symlinking /home/jimi/gitlab/rosbot/devel/./setup.bash
+Symlinking /home/jimi/gitlab/rosbot/devel/./local_setup.zsh
+Symlinking /home/jimi/gitlab/rosbot/devel/./setup.sh
+Symlinking /home/jimi/gitlab/rosbot/devel/./setup.zsh
+Symlinking /home/jimi/gitlab/rosbot/devel/./local_setup.bash
+Symlinking /home/jimi/gitlab/rosbot/devel/./env.sh
+Symlinking /home/jimi/gitlab/rosbot/devel/./_setup_util.py
+Symlinking /home/jimi/gitlab/rosbot/devel/./local_setup.sh
+Symlinking /home/jimi/gitlab/rosbot/devel/./cmake.lock
+Symlinking /home/jimi/gitlab/rosbot/devel/lib/pkgconfig/catkin_tools_prebuild.pc
+Symlinking /home/jimi/gitlab/rosbot/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
+Symlinking /home/jimi/gitlab/rosbot/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
